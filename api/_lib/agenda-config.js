@@ -99,3 +99,8 @@ export const CONFIG = {
 
 // Duración total que ocupa un turno en el calendario (asesoría + colchón).
 export const blockMinutes = () => CONFIG.slotMinutes + CONFIG.bufferMinutes;
+
+// Etiqueta que se guarda en cada evento creado desde la web.
+// El panel la usa para listar sólo las asesorías, sin tocar el resto de tus
+// eventos. Si la cambiás, actualizala también en el panel (src/lib/agendas.ts).
+export const AGENDA_TAG = 'web-agenda';

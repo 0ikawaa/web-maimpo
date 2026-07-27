@@ -9,7 +9,7 @@
 //  editando el request a mano.
 // ============================================================================
 
-import { CONFIG } from './_lib/agenda-config.js';
+import { CONFIG, AGENDA_TAG } from './_lib/agenda-config.js';
 import { getBusyBlocks, createEvent } from './_lib/google.js';
 import { isSlotBookable } from './_lib/slots.js';
 import { formatHuman } from './_lib/time.js';
@@ -88,6 +88,19 @@ export default async function handler(req, res) {
       start: { dateTime: start.toISOString(), timeZone: CONFIG.timeZone },
       end: { dateTime: end.toISOString(), timeZone: CONFIG.timeZone },
       attendees: [{ email, displayName: name }],
+      // Datos estructurados para el panel: los lee sin tener que parsear la
+      // descripción, y el tag "source" permite filtrar las asesorías sin
+      // mirar el resto de los eventos del calendario.
+      extendedProperties: {
+        private: {
+          source: AGENDA_TAG,
+          mode,
+          name,
+          email,
+          phone,
+          notes: notes.slice(0, 900), // límite de 1024 por valor en la API
+        },
+      },
       guestsCanModify: false,
       guestsCanInviteOthers: false,
       reminders: {
