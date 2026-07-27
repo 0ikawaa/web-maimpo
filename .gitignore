@@ -1,0 +1,12 @@
+node_modules/
+package-lock.json
+
+# Herramientas locales
+.claude/
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
