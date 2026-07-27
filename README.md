@@ -15,7 +15,8 @@ con más de 10 años de experiencia en importación directa desde China.
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![Sin dependencias](https://img.shields.io/badge/framework-vanilla-17A398?style=flat-square)
-![Deploy](https://img.shields.io/badge/deploy-Railway-0B1F3A?style=flat-square&logo=railway&logoColor=white)
+![Deploy](https://img.shields.io/badge/deploy-Vercel-0B1F3A?style=flat-square&logo=vercel&logoColor=white)
+![Agenda](https://img.shields.io/badge/agenda-Google%20Calendar-17A398?style=flat-square&logo=googlecalendar&logoColor=white)
 
 </div>
 
@@ -35,12 +36,13 @@ convertir visitantes en asesorías agendadas o consultas por WhatsApp.
 
 | | |
 |---|---|
-| 🎯 **Conversión primero** | Doble CTA: agendar asesoría (Calendly) o consultar por WhatsApp |
+| 🎯 **Conversión primero** | Doble CTA: agendar asesoría o consultar por WhatsApp |
+| 🗓️ **Agenda propia** | Sistema de turnos conectado a Google Calendar, con Meet o presencial. Sin Calendly, sin costo mensual |
 | 📱 **100% responsive** | Diseño mobile-first, menú hamburguesa, layouts que se adaptan de 360px a 4K |
 | 🎞️ **Animaciones al scroll** | Reveal progresivo con `IntersectionObserver` + red de seguridad al cargar |
 | 🧭 **Scroll spy** | La navegación se resalta sola según la sección visible |
 | 💬 **Formulario → WhatsApp** | El form arma el mensaje y lo abre directo en WhatsApp, sin backend |
-| 🗓️ **Modal de agenda** | Elegís entre asesoría por llamada o presencial, cada una a su link de Calendly |
+| 🗓️ **Modal de agenda** | Elegís videollamada o presencial, ves los horarios libres reales y reservás en 3 pasos |
 | ♿ **A prueba de fallos** | Tabs y FAQ funcionan con HTML/CSS puro (`radio` + `<details>`): andan aunque el JS no cargue |
 | 🔗 **Listo para compartir** | Meta tags Open Graph y Twitter Card para previews en redes y WhatsApp |
 | 🗺️ **Mapa integrado** | Google Maps embebido con carga diferida (`loading="lazy"`) |
@@ -52,11 +54,25 @@ convertir visitantes en asesorías agendadas o consultas por WhatsApp.
 ```
 .
 ├── index.html      # Todo el contenido y la estructura del sitio
-├── styles.css      # Estilos completos (~1.000 líneas, variables CSS + responsive)
-├── script.js       # Interactividad: menú, scroll spy, reveals, modal, formulario
+├── styles.css      # Estilos completos (variables CSS + responsive)
+├── script.js       # Interactividad: menú, scroll spy, reveals, formulario
+├── agenda.js       # Sistema de agendamiento (modal de 4 pasos)
 ├── logo.svg        # Logo principal (header, fondos claros)
 ├── logo-white.svg  # Logo en blanco (footer, fondos oscuros)
-└── package.json    # Sirve el sitio estático en producción
+├── package.json    # Scripts y dependencias
+│
+├── api/                        # Backend de la agenda (funciones de Vercel)
+│   ├── availability.js         # GET  · devuelve los horarios libres
+│   ├── book.js                 # POST · crea el turno en Google Calendar
+│   └── _lib/
+│       ├── agenda-config.js    # ⚙️  horarios, duración, feriados, dirección
+│       ├── google.js           # cliente de Google Calendar (sin dependencias)
+│       ├── slots.js            # cálculo de disponibilidad
+│       └── time.js             # manejo de zona horaria
+│
+├── scripts/
+│   └── get-refresh-token.js    # autorización con Google (se corre una vez)
+└── SETUP-AGENDA.md             # 📖 guía para dejar la agenda andando
 ```
 
 ### Secciones de la página
@@ -101,38 +117,67 @@ actualiza el sitio entero.
 
 ---
 
-## 🚀 Cómo correrlo localmente
+## 🗓️ La agenda
 
-No hay build ni instalación obligatoria: es un sitio estático.
+El sistema de turnos es propio y **no depende de ningún servicio pago**. Cuando alguien
+toca *"Agendá tu asesoría"* se abre un modal de cuatro pasos:
 
-**Opción rápida** — abrí `index.html` en el navegador y listo.
-
-**Opción recomendada** — con un servidor local, para que el scroll spy, las rutas
-relativas y el mapa se comporten igual que en producción:
-
-```bash
-# Con Node
-npx serve .
-
-# Con Python
-python -m http.server 8000
+```
+modalidad  →  día y hora  →  datos  →  confirmación
+ Meet o        horarios       nombre     link de Meet
+ presencial    libres         y email    o dirección
 ```
 
-Luego entrá a `http://localhost:3000` (o `:8000`).
+Los horarios que se muestran salen **en vivo de Google Calendar**: sólo aparecen los que
+están realmente libres, así que nunca se agenda encima de algo que ya tenías. Al confirmar
+se crea el evento, se invita al cliente (Google le manda el mail solo) y, si eligió
+videollamada, se genera el link de Meet.
+
+Necesita dos funciones serverless porque las credenciales de Google **no pueden vivir en
+el navegador**. Corren gratis en el plan Hobby de Vercel.
+
+> 📖 **Para dejarlo andando, seguí [SETUP-AGENDA.md](SETUP-AGENDA.md)** — son 15 minutos,
+> una sola vez.
+
+---
+
+## 🚀 Cómo correrlo localmente
+
+El sitio en sí es estático, pero la agenda necesita el backend. Para que funcione todo:
+
+```bash
+npm i -g vercel     # una sola vez
+npm run dev         # levanta el sitio + las funciones de /api
+```
+
+Entrá a `http://localhost:3000`.
+
+> Requiere el archivo `.env.local` con las credenciales de Google
+> (ver [SETUP-AGENDA.md](SETUP-AGENDA.md)). Sin él, todo el sitio anda igual pero el
+> modal de agenda muestra un aviso y ofrece coordinar por WhatsApp.
+
+**Si sólo querés ver el diseño**, sin la agenda, alcanza con un servidor estático:
+
+```bash
+npx serve .          # http://localhost:3000
+```
 
 ---
 
 ## ☁️ Deploy
 
-El proyecto está preparado para **Railway** como sitio estático:
+El proyecto está preparado para **Vercel**, que sirve el sitio estático y las funciones
+de `/api` en el mismo dominio:
 
-```json
-"scripts": { "start": "serve -s . -l $PORT" }
+```bash
+vercel --prod
 ```
 
-Railway detecta el `package.json`, instala `serve` y levanta el sitio en el puerto que
-asigna. También funciona sin cambios en Netlify, Vercel, Cloudflare Pages o GitHub Pages
-(en cualquiera de ellos alcanza con apuntar al directorio raíz).
+Las credenciales van como variables de entorno en el panel de Vercel — nunca en el repo.
+El detalle está en [SETUP-AGENDA.md](SETUP-AGENDA.md) (paso 6).
+
+> ⚠️ Las plataformas puramente estáticas (GitHub Pages, Cloudflare Pages) sirven bien el
+> sitio pero **no ejecutan `/api`**, así que la agenda no funcionaría ahí.
 
 ---
 
@@ -144,7 +189,7 @@ Si necesitás cambiar datos de contacto o integraciones, están todos acá:
 |---|---|
 | Número de WhatsApp del formulario | `script.js` → constante `WA_NUMBER` |
 | Botón flotante y link de WhatsApp | `index.html` → enlaces `wa.me/...` |
-| Links de Calendly (llamada / presencial) | `index.html` → modal `#agendaModal` |
+| **Horarios, duración y feriados de la agenda** | `api/_lib/agenda-config.js` |
 | Email, teléfono y dirección | `index.html` → sección `#contacto` |
 | Mapa | `index.html` → `<iframe>` de Google Maps |
 | Colores y tipografías | `styles.css` → bloque `:root` |

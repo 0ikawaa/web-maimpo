@@ -1,8 +1,11 @@
 {
   "name": "ma-importaciones-landing",
   "private": true,
+  "type": "module",
   "scripts": {
-    "start": "serve -s . -l $PORT"
+    "start": "serve -s . -l $PORT",
+    "dev": "vercel dev",
+    "agenda:auth": "node scripts/get-refresh-token.js"
   },
   "dependencies": {
     "serve": "^14.2.4"

@@ -1,6 +1,12 @@
 node_modules/
 package-lock.json
 
+# Credenciales — NUNCA subir esto al repo
+.env
+.env.local
+.env*.local
+.vercel/
+
 # Herramientas locales
 .claude/
 .vscode/

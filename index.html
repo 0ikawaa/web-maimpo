@@ -44,7 +44,7 @@
       <a href="#contacto" data-link>Contacto</a>
     </nav>
     <div class="nav-ctas">
-      <a href="https://calendly.com/matiasolivieri34/30min" target="_blank" rel="noopener" class="cta-agenda js-agenda">
+      <a href="#contacto" class="cta-agenda js-agenda">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Agendá tu asesoría
       </a>
@@ -55,7 +55,7 @@
     <a href="#nosotros">Nosotros</a>
     <a href="#servicio">Servicios</a>
     <a href="#contacto">Contacto</a>
-    <a href="https://calendly.com/matiasolivieri34/30min" target="_blank" rel="noopener" class="btn btn-teal js-agenda">
+    <a href="#contacto" class="btn btn-teal js-agenda">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       Agendá tu asesoría
     </a>
@@ -70,7 +70,7 @@
       <h1>Importá desde <span class="hl">China</span> a Uruguay, sin complicaciones</h1>
       <p>Somos una empresa uruguaya con más de 10 años de importación directa y agente de compras propio en origen. Nos encargamos de la compra, el transporte y la Aduana. Vos solo elegís qué traer.</p>
       <div class="hero-actions">
-        <a href="https://calendly.com/matiasolivieri34/30min" target="_blank" rel="noopener" class="btn btn-teal btn-hero js-agenda">
+        <a href="#contacto" class="btn btn-teal btn-hero js-agenda">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           Agendá tu asesoría
         </a>
@@ -314,7 +314,7 @@
     <h2>¿Listo para importar?</h2>
     <p>Contanos qué producto tenés en mente y armamos tu cotización, o agendá una asesoría por llamada o presencial.</p>
     <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-      <a href="https://calendly.com/matiasolivieri34/30min" target="_blank" rel="noopener" class="btn btn-teal js-agenda">
+      <a href="#contacto" class="btn btn-teal js-agenda">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Agendá tu asesoría
       </a>
@@ -392,29 +392,111 @@
   <div class="footer-copy">© 2026 MA Importaciones · Arenal Grande 2125, Montevideo, Uruguay</div>
 </footer>
 
-<!-- ===== Selector de agendamiento ===== -->
+<!-- ===== Agendamiento (conectado a Google Calendar) ===== -->
 <div class="agenda-modal" id="agendaModal" aria-hidden="true">
   <div class="agenda-backdrop" data-agenda-close></div>
   <div class="agenda-dialog" role="dialog" aria-modal="true" aria-labelledby="agendaTitle">
+    <button class="agenda-back" type="button" id="agendaBack" hidden aria-label="Volver">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    </button>
     <button class="agenda-x" type="button" data-agenda-close aria-label="Cerrar">&times;</button>
+
     <div class="agenda-head">
       <div class="eyebrow">Agendá tu asesoría</div>
       <h3 id="agendaTitle">¿Cómo preferís tu asesoría?</h3>
-      <p>Elegí la modalidad y coordinás el día y la hora que mejor te queden.</p>
+      <p id="agendaSubtitle">Elegí la modalidad y después el día y la hora que mejor te queden.</p>
     </div>
-    <div class="agenda-options">
-      <a class="agenda-opt" href="https://calendly.com/matiasolivieri34/new-meeting" target="_blank" rel="noopener">
-        <span class="agenda-opt-ico">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </span>
-        <span class="agenda-opt-txt"><b>Por llamada</b><small>Coordinamos una llamada o videollamada</small></span>
-      </a>
-      <a class="agenda-opt" href="https://calendly.com/matiasolivieri34/30min" target="_blank" rel="noopener">
-        <span class="agenda-opt-ico">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <span class="agenda-opt-txt"><b>En persona</b><small>Nos visitás en nuestro local en Montevideo</small></span>
-      </a>
+
+    <!-- Paso 1 · modalidad -->
+    <div class="agenda-step" data-step="mode">
+      <div class="agenda-options">
+        <button class="agenda-opt" type="button" data-mode="meet">
+          <span class="agenda-opt-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          </span>
+          <span class="agenda-opt-txt"><b>Videollamada</b><small>Te mandamos el link de Google Meet por mail</small></span>
+          <svg class="agenda-opt-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <button class="agenda-opt" type="button" data-mode="office">
+          <span class="agenda-opt-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <span class="agenda-opt-txt"><b>Presencial</b><small>Nos visitás en Arenal Grande 2125, Montevideo</small></span>
+          <svg class="agenda-opt-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Paso 2 · día y hora -->
+    <div class="agenda-step" data-step="slot" hidden>
+      <div class="agenda-loading" id="agendaLoading">
+        <span class="agenda-spinner"></span> Buscando horarios disponibles...
+      </div>
+
+      <div class="agenda-error" id="agendaLoadError" hidden></div>
+
+      <div id="agendaPicker" hidden>
+        <div class="cal-head">
+          <button type="button" class="cal-nav" id="calPrev" aria-label="Mes anterior">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <b id="calMonth"></b>
+          <button type="button" class="cal-nav" id="calNext" aria-label="Mes siguiente">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="cal-dow"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+        <div class="cal-grid" id="calGrid"></div>
+        <div class="slot-panel" id="slotPanel">
+          <p class="slot-hint">Elegí un día para ver los horarios libres.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paso 3 · datos -->
+    <div class="agenda-step" data-step="form" hidden>
+      <div class="agenda-summary" id="agendaSummary"></div>
+      <form id="agendaForm" novalidate>
+        <div class="agenda-field">
+          <label for="agName">Nombre y apellido</label>
+          <input id="agName" name="name" type="text" autocomplete="name" placeholder="Tu nombre" required>
+        </div>
+        <div class="agenda-field">
+          <label for="agEmail">Email</label>
+          <input id="agEmail" name="email" type="email" autocomplete="email" placeholder="tu@email.com" required>
+          <small>Ahí te llega la invitación con el recordatorio.</small>
+        </div>
+        <div class="agenda-field">
+          <label for="agPhone">Teléfono <span>(opcional)</span></label>
+          <input id="agPhone" name="phone" type="tel" autocomplete="tel" placeholder="+598 ...">
+        </div>
+        <div class="agenda-field">
+          <label for="agNotes">¿Qué querés importar? <span>(opcional)</span></label>
+          <textarea id="agNotes" name="notes" rows="3" placeholder="Producto, cantidad estimada, dudas..."></textarea>
+        </div>
+        <!-- Campo trampa anti-spam: invisible para las personas -->
+        <div class="agenda-hp" aria-hidden="true">
+          <label for="agWebsite">No completar</label>
+          <input id="agWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="agenda-error" id="agendaFormError" hidden></div>
+        <button type="submit" class="agenda-submit" id="agendaSubmit">Confirmar asesoría</button>
+        <p class="agenda-legal">Al confirmar, te agendamos y te llega la invitación por mail.</p>
+      </form>
+    </div>
+
+    <!-- Paso 4 · confirmación -->
+    <div class="agenda-step" data-step="done" hidden>
+      <div class="agenda-done">
+        <div class="agenda-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h4>¡Turno confirmado!</h4>
+        <p id="agendaDoneWhen"></p>
+        <div id="agendaDoneDetail"></div>
+        <p class="agenda-legal">Te mandamos la invitación a tu email. Si no la ves, revisá el spam.</p>
+        <button type="button" class="agenda-submit agenda-submit-ghost" data-agenda-close>Cerrar</button>
+      </div>
     </div>
   </div>
 </div>
@@ -423,7 +505,8 @@
   <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.87 9.87 0 001.599 5.379l-.999 3.648 3.9-1.026zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.017-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
 </a>
 
-<!-- Script externo -->
+<!-- Scripts externos -->
 <script src="script.js" defer></script>
+<script src="agenda.js" defer></script>
 </body>
 </html>

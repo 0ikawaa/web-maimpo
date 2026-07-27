@@ -57,25 +57,8 @@ document.querySelectorAll('.how-radio').forEach((r, i) => {
   });
 });
 
-// Selector de agendamiento (llamada / presencial)
-const agendaModal = document.getElementById('agendaModal');
-const openAgenda = () => {
-  agendaModal.classList.add('open');
-  agendaModal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-};
-const closeAgenda = () => {
-  agendaModal.classList.remove('open');
-  agendaModal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-};
-document.querySelectorAll('.js-agenda').forEach(b => b.addEventListener('click', (e) => {
-  e.preventDefault();
-  openAgenda();
-}));
-agendaModal.querySelectorAll('[data-agenda-close]').forEach(el => el.addEventListener('click', closeAgenda));
-agendaModal.querySelectorAll('.agenda-opt').forEach(a => a.addEventListener('click', () => setTimeout(closeAgenda, 120)));
-document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeAgenda(); });
+// El sistema de agendamiento (modal + calendario + Google Calendar)
+// vive en agenda.js, que se carga aparte.
 
 // Contact form validation + success
 const form = document.getElementById('contactForm');

@@ -1,0 +1,7 @@
+# Archivos que no hacen falta en producción.
+# El sitio se sirve desde la raíz, así que todo lo que quede acá
+# NO se sube (y por lo tanto no queda accesible desde la web).
+
+scripts/
+SETUP-AGENDA.md
+README.md
