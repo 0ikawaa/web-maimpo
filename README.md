@@ -6,6 +6,9 @@
 
 **Importá desde China a Uruguay, sin complicaciones.**
 
+![Sitio institucional](./docs/captura.jpg)
+
+
 Sitio web institucional de MA Importaciones — empresa uruguaya de comercio exterior
 con más de 10 años de experiencia en importación directa desde China.
 
